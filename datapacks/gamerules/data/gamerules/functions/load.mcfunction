@@ -1,0 +1,3 @@
+gamerule maxEntityCramming 10
+gamerule spawnRadius 200
+gamerule spectatorsGenerateChunks false
