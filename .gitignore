@@ -1,4 +1,4 @@
 java/
 server/
 server.jar
-players_online.log
+players_online.csv
