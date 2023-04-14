@@ -10,6 +10,6 @@ xcopy ..\server-icon.png . /m /y
 xcopy ..\server.properties . /m /y
 xcopy ..\ops.json . /m /y
 xcopy ..\datapacks world\datapacks /s /i /m /y
-..\java\bin\java.exe -Xmx4G -Xms4G -jar server.jar nogui
+start /abovenormal /b /wait ..\java\bin\java.exe -Xmx4G -Xms4G -jar server.jar nogui
 timeout /t 5
 goto loop
