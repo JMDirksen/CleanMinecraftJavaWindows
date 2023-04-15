@@ -1,7 +1,17 @@
 @echo off
+
+:: Get timestamp
 set timestamp=%date:~3,2%-%date:~6,2%-%date:~-4% %time:~0,2%:%time:~3,2%
-for /f %%a in ('netstat -n ^| find "192.168.88.4:25565" ^| find /c "ESTABLISHED"') do set online=%%a
-call :addLine "C:\Data\www\cleanmc.com\stats\players_online.csv" 8640 "%timestamp%,%online%"
+
+:: Get local ip address
+for /f "tokens=2 delims=:" %%a in ('ipconfig ^| find "IPv4"') do set ip=%%a
+set ip=%ip:~1%
+
+:: Get Minecraft server connections
+for /f %%a in ('netstat -n ^| find "%ip%:25565" ^| find /c "ESTABLISHED"') do set online=%%a
+
+:: Write to csv (max 30 days, 4*24*30=2880)
+call :addLine "C:\Data\www\cleanmc.com\stats\players_online.csv" 2880 "%timestamp%,%online%"
 exit /b
 
 
