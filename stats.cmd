@@ -1,4 +1,5 @@
 @echo off
+setlocal EnableDelayedExpansion
 
 :: Load defaults
 set last=0
@@ -8,7 +9,7 @@ set dAvg=0
 set mAvg=0
 
 :: Load stored data
-if exist stats.db for /f %%a in (stats.db) do set %%a
+if exist stats.db for /f "tokens=*" %%a in (stats.db) do set %%a
 
 :: Get local ip address
 for /f "tokens=2 delims=:" %%a in ('ipconfig ^| find "IPv4"') do set ip=%%a
@@ -27,11 +28,11 @@ set /a dAvg=( %dAvg% * 287 + %current% * 1000000 ) / 288
 set /a mAvg=( %mAvg% * 8639 + %current% * 1000000 ) / 8640
 
 :: Save data
-echo last=%last% >stats.db
-echo max=%max% >>stats.db
-echo maxAt=%maxAt% >>stats.db
-echo dAvg=%dAvg% >>stats.db
-echo mAvg=%mAvg% >>stats.db
+echo last=!last!>stats.db
+echo max=!max!>>stats.db
+echo maxAt=!maxAt!>>stats.db
+echo dAvg=!dAvg!>>stats.db
+echo mAvg=!mAvg!>>stats.db
 
 :: Output HTML
 echo ^<html^>^<head^>^<title^>Stats (%current%)^</title^>^<meta http-equiv=refresh content=60^>^</head^>^<body^>^<p^> >stats.html
