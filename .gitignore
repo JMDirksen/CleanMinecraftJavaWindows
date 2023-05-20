@@ -1,4 +1,5 @@
 java/
 server/
 server.jar
-players_online.csv
+stats.db
+stats.html
