@@ -29,14 +29,11 @@ echo dAvg=%dAvg% >>stats.db
 echo mAvg=%mAvg% >>stats.db
 
 :: Output HTML
-set /a daily=%dAvg% / 100000
-set /a monthly=%mAvg% / 100000
-
 echo ^<html^>^<head^>^<title^>Stats (%current%)^</title^>^<meta http-equiv=refresh content=60^>^</head^>^<body^>^<p^> >stats.html
 echo Current: %current% ^<br^> >>stats.html
 echo Max: %max% ^<br^> >>stats.html
-echo Daily average: %daily%/10 ^<br^> >>stats.html
-echo Monthly average: %monthly%/10 ^<br^> >>stats.html
+echo Daily average: ^<script^>document.write(Math.round(%dAvg%/10000)/100)^</script^> ^<br^> >>stats.html
+echo Monthly average: ^<script^>document.write(Math.round(%mAvg%/10000)/100)^</script^> ^<br^> >>stats.html
 echo ^</p^>^</body^>^</html^> >>stats.html
 
 :: Copy to webserver
