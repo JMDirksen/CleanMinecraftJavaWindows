@@ -20,7 +20,7 @@ for /f %%a in ('netstat -n ^| find "%ip%:25565" ^| find /c "ESTABLISHED"') do se
 
 :: Calculate stats
 set last=%current%
-if %current% gtr %max% (
+if %current% geq %max% (
   set max=%current%
   set maxAt=%date% %time%
 )
