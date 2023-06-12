@@ -11,12 +11,11 @@ set mAvg=0
 :: Load stored data
 if exist stats.db for /f "tokens=*" %%a in (stats.db) do set %%a
 
-:: Get local ip address
-for /f "tokens=2 delims=:" %%a in ('ipconfig ^| find "IPv4"') do set ip=%%a
-set ip=%ip:~1%
-
 :: Get Minecraft server connections
-for /f %%a in ('netstat -n ^| find "%ip%:25565" ^| find /c "ESTABLISHED"') do set current=%%a
+if exist temp.list del temp.list
+for /f "tokens=2" %%a in ('netstat -n ^| find "ESTABLISHED"') do echo %%a >> temp.list
+for /f %%a in ('type temp.list ^| find /c ":25565"') do set current=%%a
+del temp.list
 
 :: Calculate stats
 set last=%current%
@@ -43,6 +42,9 @@ echo Monthly average: ^<script^>document.write(Math.round(%mAvg%/10000)/100)^</s
 echo ^</p^>^</body^>^</html^> >>stats.html
 
 :: Copy to webserver
-copy /y stats.html C:\Data\www\cleanmc.com\stats\index.html
+copy /y stats.html C:\Data\www\cleanmc.com\stats\index.html >nul
+
+:: Output
+type stats.db
 
 exit /b
