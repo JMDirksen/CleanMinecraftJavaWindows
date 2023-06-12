@@ -1,5 +1,11 @@
 [
   {
+    "uuid": "00000000-0000-0000-0000-000000000000",
+    "name": "FakeOp",
+    "level": 1,
+    "bypassesPlayerLimit": false
+  },
+  {
     "uuid": "36b94d40-84f8-4612-9cab-9793de6fbdd8",
     "name": "RandomBit",
     "level": 4,

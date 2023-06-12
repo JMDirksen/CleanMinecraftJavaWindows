@@ -1,6 +1,5 @@
 @echo off
 title Minecraft Java Server
-color 20
 mkdir server 2>nul
 cd server
 :loop
@@ -10,6 +9,6 @@ xcopy ..\server-icon.png . /m /y
 xcopy ..\server.properties . /m /y
 xcopy ..\ops.json . /m /y
 xcopy ..\datapacks world\datapacks /s /i /m /y
-start /abovenormal /b /wait ..\java\bin\java.exe -Xmx4G -Xms4G -jar server.jar nogui
+start /abovenormal /b /wait ..\java\bin\java.exe -Xmx8G -Xms8G -jar server.jar nogui
 timeout /t 5
 goto loop
